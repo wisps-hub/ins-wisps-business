@@ -1,0 +1,21 @@
+CREATE TABLE `d1`.`org_user` (
+     `id` bigint unsigned NOT NULL AUTO_INCREMENT COMMENT '用户ID（自增主键）',
+     `nick_name` varchar(255) DEFAULT NULL COMMENT '用户昵称',
+     `password_encrypt` varchar(255) DEFAULT NULL COMMENT '密码哈希',
+     `state` varchar(64) DEFAULT NULL COMMENT '用户状态（ACTIVE，FROZEN）',
+     `invite_code` varchar(255) DEFAULT NULL COMMENT '邀请码',
+     `mobile` varchar(20) DEFAULT NULL COMMENT '手机号码',
+     `email` varchar(20) DEFAULT NULL COMMENT '邮箱',
+     `inviter_id` varchar(255) DEFAULT NULL COMMENT '邀请人用户ID',
+     `last_login_time` timestamp DEFAULT NULL COMMENT '最后登录时间',
+     `avatar_url` varchar(255) DEFAULT NULL COMMENT '用户头像URL',
+     `block_chain_url` varchar(255) DEFAULT NULL COMMENT '区块链地址',
+     `block_chain_platform` varchar(255) DEFAULT NULL COMMENT '区块链平台',
+     `certification` tinyint(1) DEFAULT NULL COMMENT '实名认证状态（TRUE或FALSE）',
+     `real_name` varchar(255) DEFAULT NULL COMMENT '真实姓名',
+     `id_card_no` varchar(255) CHARACTER SET utf8mb4  DEFAULT NULL COMMENT '身份证no',
+     `user_role` varchar(128) DEFAULT NULL COMMENT '用户角色',
+     `createtime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+     `modifytime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+     PRIMARY KEY (`id`)
+) COMMENT='用户信息表';

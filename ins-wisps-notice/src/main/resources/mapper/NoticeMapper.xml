@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wisps.notice.provider.mapping.mapper.NoticeMapper">
+    <resultMap id="BaseResultMap" type="com.wisps.notice.provider.entity.Notice">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="notice_title" jdbcType="VARCHAR" property="noticeTitle"/>
+        <result column="notice_content" jdbcType="VARCHAR" property="noticeContent"/>
+        <result column="notice_type" jdbcType="VARCHAR" property="noticeType"/>
+        <result column="send_success_time" jdbcType="TIMESTAMP" property="sendSuccessTime"/>
+        <result column="target_address" jdbcType="VARCHAR" property="targetAddress"/>
+        <result column="state" jdbcType="VARCHAR" property="state"/>
+        <result column="retry_times" jdbcType="INTEGER" property="retryTimes"/>
+        <result column="extend_Info" jdbcType="VARCHAR" property="extendInfo"/>
+        <result column="createtime" jdbcType="TIMESTAMP" property="createtime"/>
+        <result column="modifytime" jdbcType="TIMESTAMP" property="modifytime"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,
+        notice_title,
+        notice_content,
+        notice_type,
+        send_success_time,
+        target_address,
+        state,
+        retry_times,
+        extend_Info,
+        createtime,
+        modifytime
+    </sql>
+</mapper>

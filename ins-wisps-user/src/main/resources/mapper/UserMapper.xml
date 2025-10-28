@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wisps.user.provider.mapping.mapper.UserMapper">
+    <resultMap id="BaseResultMap" type="com.wisps.user.provider.entity.UserEntity">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="nick_name" jdbcType="VARCHAR" property="nickName"/>
+        <result column="password_encrypt" jdbcType="VARCHAR" property="passwordEncrypt" typeHandler="com.wisps.datasource.handler.AesEncryptTypeHandler"/>
+        <result column="state" jdbcType="VARCHAR" property="state"/>
+        <result column="invite_code" jdbcType="VARCHAR" property="inviteCode"/>
+        <result column="inviter_id" jdbcType="BIGINT" property="inviterId"/>
+        <result column="mobile" jdbcType="VARCHAR" property="mobile" typeHandler="com.wisps.datasource.handler.AesEncryptTypeHandler"/>
+        <result column="email" jdbcType="VARCHAR" property="email" typeHandler="com.wisps.datasource.handler.AesEncryptTypeHandler"/>
+        <result column="last_login_time" jdbcType="TIMESTAMP" property="lastLoginTime"/>
+        <result column="avatar_url" jdbcType="VARCHAR" property="avatarUrl"/>
+        <result column="block_chain_url" jdbcType="VARCHAR" property="blockChainUrl"/>
+        <result column="block_chain_platform" jdbcType="VARCHAR" property="blockChainPlatform"/>
+        <result column="certification" jdbcType="TINYINT" property="certification"/>
+        <result column="real_name" jdbcType="VARCHAR" property="realName" typeHandler="com.wisps.datasource.handler.AesEncryptTypeHandler"/>
+        <result column="id_card_no" jdbcType="VARCHAR" property="idCardNo" typeHandler="com.wisps.datasource.handler.AesEncryptTypeHandler"/>
+        <result column="user_role" jdbcType="VARCHAR" property="userRole"/>
+        <result column="createtime" jdbcType="TIMESTAMP" property="createtime"/>
+        <result column="modifytime" jdbcType="TIMESTAMP" property="modifytime"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,
+        nick_name,
+        password_encrypt,
+        state,
+        invite_code,
+        inviter_id,
+        mobile,
+        email,
+        last_login_time,
+        avatar_url,
+        block_chain_url,
+        block_chain_platform,
+        certification,
+        real_name,
+        id_card_no,
+        user_role,
+        createtime,
+        modifytime
+    </sql>
+
+    <select id="getList" resultMap="BaseResultMap">
+        select * from org_user
+        <where>
+            <if test="ids != null and ids.size() > 0">
+                id IN
+                <foreach collection="ids" item="id" open="(" separator="," close=")">
+                    #{id}
+                </foreach>
+            </if>
+        </where>
+    </select>
+</mapper>

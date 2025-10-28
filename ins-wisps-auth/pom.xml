@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.wisps</groupId>
+        <artifactId>ins-wisps-business</artifactId>
+        <version>0.0.1</version>
+    </parent>
+
+    <artifactId>ins-wisps-auth</artifactId>
+
+    <properties>
+        <application.name>ins-wisps-auth</application.name>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <!-- auth-api -->
+        <dependency>
+            <groupId>com.wisps</groupId>
+            <artifactId>ins-wisps-api</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+        <!-- notice-api -->
+        <dependency>
+            <groupId>com.wisps</groupId>
+            <artifactId>ins-wisps-notice-api</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+        <!-- web2 -->
+        <dependency>
+            <groupId>com.wisps</groupId>
+            <artifactId>ins-wisps-web2</artifactId>
+        </dependency>
+        <!-- datasource -->
+        <dependency>
+            <groupId>com.wisps</groupId>
+            <artifactId>ins-wisps-datasource</artifactId>
+        </dependency>
+        <!-- cache -->
+        <dependency>
+            <groupId>com.wisps</groupId>
+            <artifactId>ins-wisps-cache</artifactId>
+        </dependency>
+        <!-- rpc -->
+        <dependency>
+            <groupId>com.wisps</groupId>
+            <artifactId>ins-wisps-rpc</artifactId>
+        </dependency>
+        <!-- config&discovery -->
+        <dependency>
+            <groupId>com.wisps</groupId>
+            <artifactId>ins-wisps-config</artifactId>
+        </dependency>
+    </dependencies>
+</project>
