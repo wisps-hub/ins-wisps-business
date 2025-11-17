@@ -15,6 +15,7 @@
         <module>ins-wisps-auth</module>
         <module>ins-wisps-gateway</module>
         <module>ins-wisps-notice</module>
+        <module>ins-wisps-ai</module>
     </modules>
     <modelVersion>4.0.0</modelVersion>
 

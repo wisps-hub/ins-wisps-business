@@ -1,0 +1,30 @@
+server:
+  port: 9000
+#  大模型对话乱码utf-8处理
+  servlet:
+    encoding:
+      enabled: true
+      force: true
+      charset: UTF-8
+spring:
+  ai:
+    dashscope:
+      api-key: ${ali-bailian-ak}
+      base-url: https://dashscope.aliyuncs.com/compatible-mode/v1 # 不配 默认https://dashscope.aliyuncs.com/compatible-mode/v1
+      chat:
+        options:
+          model: qwen-plus# 不配 默认qwen-plus
+    openai:
+      api-key: ${ali-bailian-ak}
+      base-url: https://dashscope.aliyuncs.com/compatible-mode
+      chat:
+        options:
+          model: deepseek-v3.1
+    ollama:
+      base-url: http://localhost:11434
+      chat:
+        model: qwen3:14b
+
+
+
+
