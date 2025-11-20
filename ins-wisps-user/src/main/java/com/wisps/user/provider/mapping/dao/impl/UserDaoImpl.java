@@ -1,6 +1,7 @@
 package com.wisps.user.provider.mapping.dao.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.wisps.datasource.utils.AesUtil;
 import com.wisps.user.provider.entity.UserEntity;
@@ -63,5 +64,19 @@ public class UserDaoImpl extends ServiceImpl<UserMapper, UserEntity> implements 
             queryWrapper.eq("password_encrypt", AesUtil.encrypt(password));
         }
         return baseMapper.selectOne(queryWrapper);
+    }
+
+    @Override
+    public Page<UserEntity> pageQuery(Integer currPage, Integer pageSize, String name, Integer state) {
+        Page<UserEntity> page = new Page<>(currPage, pageSize);
+        QueryWrapper<UserEntity> wrapper = new QueryWrapper<>();
+        if (state != null) {
+            wrapper.eq("state", state);
+        }
+        if (StringUtils.isNotBlank(name)) {
+            wrapper.likeLeft("nickName", name);
+        }
+        wrapper.orderBy(true, false, "createtime");
+        return this.page(page, wrapper);
     }
 }

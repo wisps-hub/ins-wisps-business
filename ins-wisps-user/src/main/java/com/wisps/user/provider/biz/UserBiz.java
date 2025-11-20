@@ -1,6 +1,9 @@
 package com.wisps.user.provider.biz;
 
+import com.wisps.resp.MultiResult;
+import com.wisps.resp.PageResp;
 import com.wisps.user.api.req.*;
+import com.wisps.user.provider.vo.req.PageUserReq;
 import com.wisps.user.provider.vo.resp.UserVo;
 
 import java.util.List;
@@ -51,4 +54,5 @@ public interface UserBiz {
      */
     List<UserVo> getList(List<Long> ids);
 
+    PageResp<UserVo> page(PageUserReq pageUserReq);
 }

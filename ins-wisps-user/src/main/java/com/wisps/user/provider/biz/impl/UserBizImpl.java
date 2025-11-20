@@ -3,7 +3,9 @@ package com.wisps.user.provider.biz.impl;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.lang.Assert;
 import cn.hutool.core.util.RandomUtil;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.google.common.collect.Lists;
+import com.wisps.resp.PageResp;
 import com.wisps.user.api.consts.UserState;
 import com.wisps.user.api.req.*;
 import com.wisps.user.provider.biz.RealNameAuthBiz;
@@ -13,6 +15,7 @@ import com.wisps.user.provider.entity.UserEntity;
 import com.wisps.user.provider.exception.UserErrorCode;
 import com.wisps.user.provider.exception.UserException;
 import com.wisps.user.provider.mapping.dao.UserDao;
+import com.wisps.user.provider.vo.req.PageUserReq;
 import com.wisps.user.provider.vo.resp.UserVo;
 import org.apache.commons.lang3.StringUtils;
 import org.redisson.api.RBloomFilter;
@@ -152,6 +155,18 @@ public class UserBizImpl implements UserBiz{
         List<UserEntity> list = userDao.getList(ids);
         return CollectionUtils.isEmpty(list)? Lists.newArrayList() :
                 list.stream().map(userEntity -> BeanUtil.copyProperties(userEntity, UserVo.class)).toList();
+    }
+
+    @Override
+    public PageResp<UserVo> page(PageUserReq pageUserReq) {
+        int currPage = pageUserReq.getCurrPage();
+        int pageSize = pageUserReq.getPageSize();
+        currPage = Math.max(currPage, 0);
+        pageSize = pageSize < 0 ? 10 : pageSize;
+        Page<UserEntity> page = userDao.pageQuery(currPage, pageSize, pageUserReq.getName(), pageUserReq.getState());
+        List<UserVo> list = page.getRecords().stream()
+                .map(userEntity -> BeanUtil.copyProperties(userEntity, UserVo.class)).toList();
+        return PageResp.of(list, (int) page.getTotal(), pageSize, currPage);
     }
 
     /**
