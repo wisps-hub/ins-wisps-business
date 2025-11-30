@@ -25,7 +25,7 @@ public class UserController extends BaseController {
         return Result.success(userBiz.getById(Long.valueOf(getUid())));
     }
 
-    @GetMapping("/page")
+    @PostMapping("/page")
     public MultiResult<UserVo> list(@RequestBody PageUserReq pageUserReq) {
         PageResp<UserVo> resp = userBiz.page(pageUserReq);
         return MultiResult.successMulti(resp.getDatas(), resp.getTotal(), resp.getCurrPage(), resp.getPageSize());

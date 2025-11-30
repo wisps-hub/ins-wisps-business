@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wisps.user.provider.mapping.mapper.PermissionMapper">
+    <resultMap id="BaseResultMap" type="com.wisps.user.provider.entity.PermissionEntity">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="path" jdbcType="VARCHAR" property="key"/>
+        <result column="title" jdbcType="VARCHAR" property="title"/>
+        <result column="grade" jdbcType="TINYINT" property="grade"/>
+        <result column="perm_type" jdbcType="TINYINT" property="permType"/>
+        <result column="pid" jdbcType="BIGINT" property="pid"/>
+        <result column="createtime" jdbcType="TIMESTAMP" property="createtime"/>
+        <result column="modifytime" jdbcType="TIMESTAMP" property="modifytime"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,
+        path,
+        title,
+        grade,
+        perm_type,
+        pid,
+        createtime,
+        modifytime
+    </sql>
+
+</mapper>

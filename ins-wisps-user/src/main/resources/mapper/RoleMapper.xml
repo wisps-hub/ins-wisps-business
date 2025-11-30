@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wisps.user.provider.mapping.mapper.RoleMapper">
+    <resultMap id="BaseResultMap" type="com.wisps.user.provider.entity.RoleEntity">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="title" jdbcType="VARCHAR" property="title"/>
+        <result column="role_type" jdbcType="TINYINT" property="roleType"/>
+        <result column="perms" jdbcType="VARCHAR" property="perms"/>
+        <result column="createtime" jdbcType="TIMESTAMP" property="createtime"/>
+        <result column="modifytime" jdbcType="TIMESTAMP" property="modifytime"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,
+        title,
+        role_type,
+        perms,
+        createtime,
+        modifytime
+    </sql>
+
+</mapper>
