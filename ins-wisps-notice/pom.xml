@@ -54,6 +54,11 @@
             <groupId>com.wisps</groupId>
             <artifactId>ins-wisps-config</artifactId>
         </dependency>
+        <!-- limiter -->
+        <dependency>
+            <groupId>com.wisps</groupId>
+            <artifactId>ins-wisps-limiter</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

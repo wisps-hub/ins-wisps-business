@@ -1,0 +1,13 @@
+wisps:
+  nacos:
+    server-addr: localhost:8848
+    namespace: d41a46f7-3b64-44c0-ab9f-b5766ca386d3
+    rpc-namespace: fd6ea807-9c6b-4e31-a49c-ea31762c0242
+    group: wisps
+    rpc-group: wisps-service
+
+spring:
+  config:
+    import:
+      - nacos:ins-wisps-common.yml?group=${wisps.nacos.group}
+      - nacos:${spring.application.name}.yml?group=${wisps.nacos.group}

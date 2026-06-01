@@ -24,17 +24,16 @@ public class DefaultGlobalFilter implements GlobalFilter, Ordered {
 
         String uri = request.getURI().toString();
         long start = System.currentTimeMillis();
-        log.info("请求 uri: {}, 开始时间: {}", uri, start);
+        log.info("请求前 uri: {}, 开始时间: {}", uri, start);
         //上面是前值逻辑
+        //下面是后置逻辑
+        //log.info("请求后 uri: {}, 响应状态码: {}", uri, response.getStatusCode());
 
         Mono<Void> mono = chain.filter(exchange).doFinally(signalType -> {
             long end = System.currentTimeMillis();
-            log.info("请求 uri: {}, 结束时间: {}, 耗时: {}", uri, end, end - start);
+            log.info("请求完成 uri: {}, 结束时间: {}, 响应状态码: {}, 耗时: {}",
+                    uri, end, response.getStatusCode(), end - start);
         });
-
-        //下面是后置逻辑
-        log.info("请求 uri: {}, 响应状态码: {}", uri, response.getStatusCode());
-
         return mono;
     }
 

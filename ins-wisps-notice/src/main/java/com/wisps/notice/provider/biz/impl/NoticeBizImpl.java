@@ -3,6 +3,7 @@ package com.wisps.notice.provider.biz.impl;
 import cn.hutool.core.util.RandomUtil;
 import com.wisps.cache.client.ICache;
 import com.wisps.exception.SystemException;
+import com.wisps.limiter.SlidingWindowRateLimiter;
 import com.wisps.notice.api.consts.NoticeConst;
 import com.wisps.notice.provider.biz.NoticeBiz;
 import com.wisps.notice.provider.consts.NoticeState;
@@ -25,11 +26,13 @@ public class NoticeBizImpl implements NoticeBiz {
     private ICache redisClient;
     @Autowired
     private SmsService smsService;
+    @Autowired
+    private SlidingWindowRateLimiter slidingWindowRateLimiter;
 
     @Override
     public Boolean genSendSmsCaptcha(String mobile) {
-        //todo wisps 限流
-        Boolean access = true;
+        // 限流
+        Boolean access = slidingWindowRateLimiter.tryAcquire("captcha:" + mobile, 1, 60);
         if (!access) {
             throw new SystemException(SEND_NOTICE_DUPLICATED);
         }

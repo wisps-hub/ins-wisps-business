@@ -39,4 +39,9 @@ public class UserController extends BaseController {
         return Result.success(true);
     }
 
+    @GetMapping("/getById")
+    public Result<UserVo> getById(Long id) {
+        return Result.success(userBiz.getById(id));
+    }
+
 }
