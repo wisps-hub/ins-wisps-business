@@ -39,5 +39,29 @@
             <groupId>com.wisps</groupId>
             <artifactId>ins-wisps-rpc</artifactId>
         </dependency>
+        <!-- Sa-Token 权限认证 -->
+        <dependency>
+            <groupId>cn.dev33</groupId>
+            <artifactId>sa-token-reactor-spring-boot3-starter</artifactId>
+            <version>1.37.0</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-web</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <!-- Sa-Token 整合 Redis （使用 jackson 序列化方式） -->
+        <dependency>
+            <groupId>cn.dev33</groupId>
+            <artifactId>sa-token-redis-jackson</artifactId>
+            <version>1.37.0</version>
+        </dependency>
+        <!-- business-api -->
+        <dependency>
+            <groupId>com.wisps</groupId>
+            <artifactId>ins-wisps-api</artifactId>
+            <version>0.0.1</version>
+        </dependency>
     </dependencies>
 </project>
