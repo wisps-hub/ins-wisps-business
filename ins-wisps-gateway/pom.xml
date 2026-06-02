@@ -39,6 +39,17 @@
             <groupId>com.wisps</groupId>
             <artifactId>ins-wisps-rpc</artifactId>
         </dependency>
+        <!--    wisps 核心包   -->
+        <dependency>
+            <groupId>com.wisps</groupId>
+            <artifactId>ins-wisps-framework</artifactId>
+        </dependency>
+        <!-- api -->
+        <dependency>
+            <groupId>com.wisps</groupId>
+            <artifactId>ins-wisps-api</artifactId>
+            <version>0.0.1</version>
+        </dependency>
         <!-- Sa-Token 权限认证 -->
         <dependency>
             <groupId>cn.dev33</groupId>

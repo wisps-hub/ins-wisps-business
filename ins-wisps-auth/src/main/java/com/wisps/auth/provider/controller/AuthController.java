@@ -1,5 +1,7 @@
 package com.wisps.auth.provider.controller;
 
+import cn.dev33.satoken.stp.SaLoginModel;
+import cn.dev33.satoken.stp.StpUtil;
 import com.wisps.auth.provider.exception.AuthException;
 import com.wisps.auth.provider.helper.NoticeHelper;
 import com.wisps.auth.provider.helper.UserHelper;
@@ -84,19 +86,15 @@ public class AuthController {
                 return Result.error(USER_OPERATE_FAILED.getCode(), USER_OPERATE_FAILED.getMsg());
             }
         }
-        // 登录 todo wisps
+        // 登录
+        StpUtil.login(userDto.getId(), new SaLoginModel().setIsLastingCookie(loginReq.getRememberMe())
+                .setTimeout(DEFAULT_LOGIN_SESSION_TIMEOUT));
         return Result.success(new LoginVo(userDto));
     }
 
     @PostMapping("/logout")
     public Result<Boolean> logout() {
-        //todo wisps
+        StpUtil.logout();
         return Result.success(true);
     }
-
-    @RequestMapping("test")
-    public String test() {
-        return "test";
-    }
-
 }

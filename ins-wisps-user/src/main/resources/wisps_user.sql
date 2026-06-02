@@ -34,16 +34,16 @@ CREATE TABLE `d1`.`org_permission` (
 
 INSERT INTO d1.org_permission (id, path, title, grade, perm_type, pid) VALUES (1, '/home', '首页', 1, 0, 0);
 INSERT INTO d1.org_permission (id, path, title, grade, perm_type, pid) VALUES (2, '/user', '用户管理', 1, 1, 0);
-INSERT INTO d1.org_permission (id, path, title, grade, perm_type, pid) VALUES (3, '/permession', '权限管理', 1, 1, 0);
+INSERT INTO d1.org_permission (id, path, title, grade, perm_type, pid) VALUES (3, '/permission', '权限管理', 1, 1, 0);
 INSERT INTO d1.org_permission (id, path, title, grade, perm_type, pid) VALUES (4, '/article', '文章管理', 1, 1, 0);
 INSERT INTO d1.org_permission (id, path, title, grade, perm_type, pid) VALUES (5, '/approve', '审核管理', 1, 1, 0);
 INSERT INTO d1.org_permission (id, path, title, grade, perm_type, pid) VALUES (6, '/publish', '发布管理', 1, 1, 0);
 INSERT INTO d1.org_permission (id, path, title, grade, perm_type, pid) VALUES (7, '/setting', '系统设置', 1, 1, 0);
 INSERT INTO d1.org_permission (id, path, title, grade, perm_type, pid) VALUES (8, '/user/list', '用户列表', 2, 0, 2);
-INSERT INTO d1.org_permission (id, path, title, grade, perm_type, pid) VALUES (9, '/role/list', '角色列表', 2, 0, 3);
-INSERT INTO d1.org_permission (id, path, title, grade, perm_type, pid) VALUES (10, '/permession/list', '权限列表', 2, 0, 3);
+INSERT INTO d1.org_permission (id, path, title, grade, perm_type, pid) VALUES (9, '/permission/role/list', '角色列表', 2, 0, 3);
+INSERT INTO d1.org_permission (id, path, title, grade, perm_type, pid) VALUES (10, '/permission/list', '权限列表', 2, 0, 3);
 INSERT INTO d1.org_permission (id, path, title, grade, perm_type, pid) VALUES (11, '/article/list', '文章列表', 2, 0, 4);
-INSERT INTO d1.org_permission (id, path, title, grade, perm_type, pid) VALUES (12, '/article/list', '新建文章', 2, 0, 4);
+INSERT INTO d1.org_permission (id, path, title, grade, perm_type, pid) VALUES (12, '/article/create', '新建文章', 2, 0, 4);
 INSERT INTO d1.org_permission (id, path, title, grade, perm_type, pid) VALUES (13, '/article/channel', '文章分类', 2, 0, 4);
 INSERT INTO d1.org_permission (id, path, title, grade, perm_type, pid) VALUES (14, '/publish/unPublish', '待发布', 2, 0, 6);
 INSERT INTO d1.org_permission (id, path, title, grade, perm_type, pid) VALUES (15, '/publish/published', '已发布', 2, 0, 6);
