@@ -7,7 +7,9 @@ import com.wisps.auth.provider.vo.dto.MailLoginDto;
 import com.wisps.auth.provider.vo.dto.MobileLoginDto;
 import com.wisps.auth.provider.vo.dto.SingleUserMailLoginDto;
 import com.wisps.auth.provider.vo.dto.SingleUserMobileLoginDto;
+import com.wisps.auth.provider.vo.req.GetTokenByAuthCodeReq;
 import com.wisps.auth.provider.vo.req.LoginTypeReq;
+import com.wisps.auth.provider.vo.req.QrcodeLoginReq;
 import com.wisps.auth.provider.vo.resp.*;
 import com.wisps.consts.DeviceType;
 import jakarta.servlet.http.HttpServletResponse;
@@ -26,20 +28,20 @@ public interface LoginBiz {
      * @param deviceType 设备类型
      * @return LoginTypeResp
      */
-    LoginTypeResp getLoginType(LoginTypeReq loginTypeReq, String deviceId, Integer deviceType);
+    LoginTypeResp getLoginType(LoginTypeReq loginTypeReq, String deviceId, DeviceType deviceType);
 
     /**
      * 获取手机验证码
      *
      * @param region 区域
-     * @param mobile 手机号
+     * @param realMobile 手机号
      * @param ip ip
      * @param deviceId 设备id
      * @param deviceType 设备类型
      * @param captchaSiteKey
      * @param captchaToken
      */
-    CaptchaGetResp getMobileCaptcha(String region, String mobile, String ip, String deviceId,
+    CaptchaGetResp getMobileCaptcha(String region, String realMobile, String ip, String deviceId,
                                     DeviceType deviceType, String captchaSiteKey, String captchaToken);
 
     /**
@@ -162,5 +164,38 @@ public interface LoginBiz {
      * @param credential 凭证
      */
     LoginResp loginByPasskey(MailLoginDto mailLoginDto, String requestId, String credential);
+
+    /**
+     * 获取二维码扫描或授权结果
+     *
+     * @param loginReq 请求参数
+     * @param deviceId 设备id
+     * @param imDeviceId im设备id
+     * @param deviceType 设备类型
+     * @param osVer 操作系统版本
+     * @param deviceName 设备名称
+     * @param ip ip
+     * @param historySessionId 历史会话id
+     * @param hisAuthToken 历史授权token
+     * @param httpServletResponse response
+     */
+    QrcodeStatusWebLoginMergeResp getQrcodeStatus4Web(QrcodeLoginReq loginReq, String deviceId, String imDeviceId, DeviceType deviceType, String osVer, String deviceName, String ip, String historySessionId, String hisAuthToken, HttpServletResponse httpServletResponse);
+
+    /**
+     * getTokenByAuthCode
+     *
+     * @param getTokenReq 请求参数
+     * @param deviceId 设备id
+     * @param imDeviceId im设备id
+     * @param deviceType 设备类型
+     * @param osVer 操作系统版本
+     * @param deviceName 设备名称
+     * @param ip ip
+     * @param response response
+     * @param scanUserId scanUserId
+     * @param hisAuthorizeToken 历史授权token
+     * @param requestId requestId
+     */
+    LoginResp getTokenByAuthCode(GetTokenByAuthCodeReq getTokenReq, String deviceId, String imDeviceId, DeviceType deviceType, String osVer, String deviceName, String ip, HttpServletResponse response, String scanUserId, String hisAuthorizeToken, String requestId);
 
 }

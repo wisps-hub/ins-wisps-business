@@ -48,7 +48,8 @@ public class LoginControllerV1 extends BaseController{
     public Result<LoginTypeResp> getLoginType(@RequestBody @Validated LoginTypeReq loginTypeReq,
                                               @RequestHeader(Header.deviceId) String deviceId,
                                               @RequestHeader(Header.deviceType) Integer deviceType) {
-        return Result.success(loginBiz.getLoginType(loginTypeReq, deviceId, deviceType));
+        DeviceType enumDeviceType = DeviceType.fromCode(deviceType);
+        return Result.success(loginBiz.getLoginType(loginTypeReq, deviceId, enumDeviceType));
     }
 
     @Deprecated
@@ -58,9 +59,9 @@ public class LoginControllerV1 extends BaseController{
         String deviceId = getHeader(Header.deviceId);
         DeviceType deviceType = deviceType();
         String ip = IpUtil.extractClientIp(getHttpServletRequest());
-
+        String realMobile = CommonUtil.decodeMobile(captchaGetReq.getRegion(), captchaGetReq.getMobile());
         CaptchaGetResp captchaGetResp = loginBiz.getMobileCaptcha(captchaGetReq.getRegion(),
-                captchaGetReq.getMobile(), ip, deviceId, deviceType, null, null);
+                realMobile, ip, deviceId, deviceType, null, null);
 
         if(DeviceType.WEB == deviceType) {
             HttpServletResponse response = getHttpServletResponse();
@@ -107,10 +108,10 @@ public class LoginControllerV1 extends BaseController{
         String appVer = getHeader(Header.appVer);
         DeviceType deviceType = deviceType();
         String ip = IpUtil.extractClientIp(getHttpServletRequest());
-        String mobile = CommonUtil.decodeMobile(loginByMobileReq.getRegion(), loginByMobileReq.getMobile());
+        String realMobile = CommonUtil.decodeMobile(loginByMobileReq.getRegion(), loginByMobileReq.getMobile());
 
         MobileLoginDto mobileLoginDto = MobileLoginDto.builder().region(loginByMobileReq.getRegion())
-                .mobile(mobile).captcha(loginByMobileReq.getCaptcha()).deviceName(deviceName)
+                .realMobile(realMobile).captcha(loginByMobileReq.getCaptcha()).deviceName(deviceName)
                 .deviceType(deviceType).os(osVer).imDeviceId(imDeviceId).deviceId(deviceId).ip(ip)
                 .loginScene(LoginScene.getEnum(loginByMobileReq.getLoginScene())).build();
         LoginResp loginResp = loginBiz.loginByMobile(mobileLoginDto);

@@ -5,7 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Data
-public class CaptchaGetReqV2 {
+public class CaptchaGetV2Req {
     @Schema(description = "区域")
     @NotBlank(message = "region must not be blank")
     private String region;

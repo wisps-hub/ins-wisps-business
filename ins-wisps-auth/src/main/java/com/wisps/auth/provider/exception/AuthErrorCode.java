@@ -14,6 +14,9 @@ public enum AuthErrorCode implements ErrorCode {
     USER_NOT_EXIST("USER_NOT_EXIST", "用户不存在"),
     INVALID_PHONE_NO("INVALID_PHONE_NO", "手机号错误"),
     INVALID_MAIL("INVALID_MAIL", "邮箱错误"),
+    INVALID_PARAMETER("INVALID_PARAMETER","invalid parameters"),
+    SYSTEM_ERR("SYSTEM_ERR","system error"),
+    CANNOT_RESOLVE_TOKEN("CANNOT_RESOLVE_TOKEN","cannot resolve token"),
     ;
 
     private String code;

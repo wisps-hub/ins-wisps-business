@@ -1,5 +1,6 @@
 package com.wisps.auth.provider.vo.dto;
 
+import com.wisps.auth.provider.consts.CredentialType;
 import com.wisps.auth.provider.consts.LoginScene;
 import com.wisps.consts.DeviceType;
 import lombok.AllArgsConstructor;
@@ -13,7 +14,7 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 public class MobileLoginDto {
     private String region;
-    private String mobile;
+    private String realMobile;
     private String captcha;
     private String deviceName;
     private DeviceType deviceType;

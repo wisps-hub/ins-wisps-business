@@ -1,5 +1,6 @@
 package com.wisps.auth.provider.vo.resp;
 
+import com.wisps.auth.provider.vo.dto.I18nName;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -25,9 +26,9 @@ public class UserInfoVo implements Serializable {
     protected Integer role;
     @Schema(description = "用户在组织内的名称")
     protected String name;
-    @Deprecated // keep for app old version
+    @Deprecated
     @Schema(description = "i18nName")
-    protected I18nNameVo i18nName;
+    protected I18nName i18nName;
     @Schema(description = "头像")
     protected String avatarUrl;
     @Schema(description = "头像Urls")

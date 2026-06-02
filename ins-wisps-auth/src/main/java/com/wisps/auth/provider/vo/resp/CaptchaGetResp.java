@@ -10,13 +10,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CaptchaGetResp {
-    @Schema(description = "短信失效时间(单位/秒)")
-    private Long verifyExpireTime;
+    @Schema(description = "短信验证码失效时间(单位/秒)")
+    private Long captchaExpireTime;
 
     @Schema(description = "多久后展示语音验证码选项（单位：秒）,-1代表无语音验证码")
     private Long showVoiceCallDuration;
 
-    public CaptchaGetResp(Long verifyExpireTime) {
-        this.verifyExpireTime = verifyExpireTime;
+    public CaptchaGetResp(Long captchaExpireTime) {
+        this.captchaExpireTime = captchaExpireTime;
     }
 }
