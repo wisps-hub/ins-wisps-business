@@ -41,4 +41,15 @@ public class SsoUserEntity {
      * 修改时间
      */
     private Long modifytime;
+
+
+    public static class Column{
+        public static final String id = "id";
+        public static final String accountId = "account_id";
+        public static final String oid = "oid";
+        public static final String uid = "uid";
+        public static final String status = "status";
+        public static final String createtime = "createtime";
+        public static final String modifytime = "modifytime";
+    }
 }

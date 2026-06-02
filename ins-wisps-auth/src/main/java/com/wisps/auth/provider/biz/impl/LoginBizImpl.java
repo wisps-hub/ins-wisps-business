@@ -7,12 +7,14 @@ import com.wisps.auth.provider.biz.LoginBiz;
 import com.wisps.auth.provider.biz.TokenBiz;
 import com.wisps.auth.provider.consts.*;
 import com.wisps.auth.provider.entity.SsoAccountEntity;
+import com.wisps.auth.provider.entity.SsoUserEntity;
 import com.wisps.auth.provider.entity.WebAuthCredentialEntity;
 import com.wisps.auth.provider.exception.AuthErrorCode;
 import com.wisps.auth.provider.helper.NoticeHelper;
 import com.wisps.auth.provider.helper.dto.CaptchaGetDto;
 import com.wisps.auth.provider.helper.dto.CaptchaStrategy;
 import com.wisps.auth.provider.mapping.dao.SsoAccountDao;
+import com.wisps.auth.provider.mapping.dao.SsoUserDao;
 import com.wisps.auth.provider.mapping.dao.WebAuthCredentialDao;
 import com.wisps.auth.provider.utils.CommonUtil;
 import com.wisps.auth.provider.utils.FastUUID;
@@ -43,6 +45,8 @@ public class LoginBizImpl implements LoginBiz {
 
     @Autowired
     private SsoAccountDao ssoAccountDao;
+    @Autowired
+    private SsoUserDao ssoUserDao;
     @Autowired
     private WebAuthCredentialDao webAuthCredentialDao;
     @Autowired
@@ -122,8 +126,22 @@ public class LoginBizImpl implements LoginBiz {
     }
 
     private LoginResult doLogin(SsoAccountEntity ssoAccount, LoginInfo loginInfo) {
-        //todo hlp
-        return null;
+        String accountId = ssoAccount.getId();
+        List<SsoUserEntity> relationList = ssoUserDao.listByAccountIds(ImmutableList.of(accountId));
+        if (CollectionUtils.isEmpty(relationList)) {
+            log.info("login with account with no user, accountId={}", accountId);
+            String accountAppToken = tokenBiz.getAccountAppToken(accountId, loginInfo.getDeviceId());
+            return new LoginResult(accountId, accountAppToken, ImmutableList.of());
+        }
+        Account2FASetting account2FASetting = imfaAccountPort.queryAccountMfa(accountId);
+        if (!isDisableMFA(account2FASetting, loginInfo.getDeviceType())) {
+            // MFA 已开启且当前设备需要二次验证，先发 accountToken，待 PIN 验证通过后再颁发用户 token
+            log.info("login with disable mfa, accountId={}", accountId);
+            return buildLoginResult(userTokenPort.getAccountAppToken(accountId, loginInfo.getDeviceId()), ImmutableList.of(), account2FASetting);
+        }
+        List<String> loginUidList = relationList.stream().map(item -> item.getUid()).distinct().collect(Collectors.toList());
+        List<SsoUserInfo> ssoUserInfoList = ssoUserInfoPort.getEnableSsoUserInfoList(loginUidList);
+        return doLoginCommon(ssoAccount, loginInfo, ssoUserInfoList, TrackConstants.LOGIN_TYPE_ALL, StringUtils.EMPTY);
     }
 
     /**
