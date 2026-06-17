@@ -6,9 +6,9 @@ import com.wisps.auth.provider.consts.CredentialType;
 import com.wisps.auth.provider.entity.SsoAccountEntity;
 import com.wisps.auth.provider.mapping.dao.SsoAccountDao;
 import com.wisps.auth.provider.mapping.mapper.SsoAccountMapper;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-@Service
+@Component
 public class SsoAccountDaoImpl extends ServiceImpl<SsoAccountMapper, SsoAccountEntity> implements SsoAccountDao {
 
     @Override
@@ -22,5 +22,11 @@ public class SsoAccountDaoImpl extends ServiceImpl<SsoAccountMapper, SsoAccountE
     @Override
     public boolean insertAccount(String id, String dbIdentity, CredentialType credentialType) {
         return baseMapper.insert(new SsoAccountEntity(id, dbIdentity, credentialType.getType())) > 0;
+    }
+
+    @Override
+    public boolean mfaEnable(String accountId) {
+        SsoAccountEntity ssoAccountEntity = this.getById(accountId);
+        return ssoAccountEntity != null && ssoAccountEntity.getEnableMfa();
     }
 }

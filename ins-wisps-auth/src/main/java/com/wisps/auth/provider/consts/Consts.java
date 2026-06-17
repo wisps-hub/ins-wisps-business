@@ -28,6 +28,8 @@ public class Consts {
     public static final String APP_ID_OFFICAL = "3";
 
     public static final byte V1_TOKEN = 1;
+    public static final byte V3_TOKEN = 3;
+    public static final byte V4_TOKEN = 4;
 
     public static final String ORG_ID_ZERO = "0";
 
@@ -50,4 +52,6 @@ public class Consts {
     public static final long DEFAULT_TOKEN_EXPIRE_SECONDS = DEFAULT_TOKEN_EXPIRE_MILLISECONDS / 1000;
     public static final String WEB_UN_LOGIN_UID = "0";
     public static final int NEW_TOKEN_DEFAULT_HASH = 0;
+
+    public static final String LOGIN_TYPE_ALL = "login_all";
 }

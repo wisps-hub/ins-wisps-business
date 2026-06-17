@@ -13,6 +13,19 @@ public enum TokenVersion {
     V1_ANONYMOUS_TOKEN(Consts.V1_TOKEN, TokenVersion.TYPE_ANONYMOUS_TOKEN,true, "匿名用户token"),
     V1_RECORD_ANONYMOUS_TOKEN(Consts.V1_TOKEN, TokenVersion.TYPE_RECORD_ANONYMOUS_TOKEN,true, "匿名录制用户token"),
     V1_DEVICE_TOKEN(Consts.V1_TOKEN, TokenVersion.TYPE_DEVICE_TOKEN,true, "设备token"),
+
+    V3_APP_ACCOUNT_TOKEN(Consts.V3_TOKEN, TokenVersion.TYPE_ACCOUNT_TOKEN,true, "toB账号token"),
+    V3_APP_ORGANIZATION_TOKEN(Consts.V3_TOKEN, TokenVersion.TYPE_ORGANIZATION_TOKEN,true, "toB组织Token"),
+    V3_ANONYMOUS_TOKEN(Consts.V3_TOKEN, TokenVersion.TYPE_ANONYMOUS_TOKEN,true, "匿名用户token"),
+    V3_RECORD_ANONYMOUS_TOKEN(Consts.V3_TOKEN, TokenVersion.TYPE_RECORD_ANONYMOUS_TOKEN,true, "匿名录制用户token"),
+    V3_DEVICE_TOKEN(Consts.V3_TOKEN, TokenVersion.TYPE_DEVICE_TOKEN,true, "设备token"),
+
+    V4_APP_ACCOUNT_TOKEN(Consts.V4_TOKEN, TokenVersion.TYPE_ACCOUNT_TOKEN,true, "toB账号token"),
+    V4_APP_ORGANIZATION_TOKEN(Consts.V4_TOKEN, TokenVersion.TYPE_ORGANIZATION_TOKEN,true, "toB组织Token"),
+    V4_ANONYMOUS_TOKEN(Consts.V4_TOKEN, TokenVersion.TYPE_ANONYMOUS_TOKEN,true, "匿名用户token"),
+    V4_RECORD_ANONYMOUS_TOKEN(Consts.V4_TOKEN, TokenVersion.TYPE_RECORD_ANONYMOUS_TOKEN,true, "匿名录制用户token"),
+    V4_DEVICE_TOKEN(Consts.V4_TOKEN, TokenVersion.TYPE_DEVICE_TOKEN,true, "设备token"),
+
     ;
     public static final byte TYPE_ACCOUNT_TOKEN = 1;
     public static final byte TYPE_ORGANIZATION_TOKEN = 2;

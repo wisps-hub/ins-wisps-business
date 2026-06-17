@@ -1,5 +1,12 @@
 package com.wisps.auth.provider.biz;
 
+import com.wisps.auth.provider.entity.SsoAccountEntity;
+import com.wisps.auth.provider.vo.dto.SsoUserInfo;
+import com.wisps.auth.provider.vo.dto.Tokens;
+import com.wisps.auth.provider.vo.dto.UserAndTeamInfo;
+
+import java.util.Map;
+
 public interface TokenBiz {
 
     /**
@@ -19,4 +26,8 @@ public interface TokenBiz {
      * @param deviceId 设备id
      */
     void cacheAppToken(String userId, String token, long ttl, String deviceId);
+
+    Map<String, Tokens> batchGetUserTokensAndInit(SsoAccountEntity ssoAccount, Map<String, SsoUserInfo> ssoUserInfoMap, Map<String, UserAndTeamInfo> userAndTeamInfoMap, String deviceId, String imdeviceId, int deviceType);
+
+    Tokens registUserTokens(String userId, String userName, String avatarUrl, String orgId, String deviceId, String imDeviceId, int deviceType);
 }

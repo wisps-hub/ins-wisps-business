@@ -142,7 +142,7 @@ public class LoginControllerV1 extends BaseController{
 
 
         MobileLoginDto mobileLoginDto = MobileLoginDto.builder().region(loginByPasskeyReq.getRegion())
-                .mobile(mobile).deviceName(deviceName).deviceType(deviceType).os(osVer).imDeviceId(imDeviceId)
+                .realMobile(mobile).deviceName(deviceName).deviceType(deviceType).os(osVer).imDeviceId(imDeviceId)
                 .deviceId(deviceId).ip(ip).loginScene(LoginScene.getEnum(loginByPasskeyReq.getLoginScene())).build();
         LoginResp loginResp = loginBiz.loginByPasskey(mobileLoginDto,
                 loginByPasskeyReq.getRequestId(), loginByPasskeyReq.getCredential());
@@ -163,7 +163,7 @@ public class LoginControllerV1 extends BaseController{
         String mobile = CommonUtil.decodeMobile(loginReq.getRegion(), loginReq.getMobile());
 
         SingleUserMobileLoginDto mobileLoginDto = SingleUserMobileLoginDto.builder().region(loginReq.getRegion())
-                .mobile(mobile).captcha(loginReq.getVerifyCode()).deviceName(deviceName).deviceType(deviceType)
+                .realMobile(mobile).captcha(loginReq.getVerifyCode()).deviceName(deviceName).deviceType(deviceType)
                 .os(osVer).imDeviceId(imDeviceId).deviceId(deviceId).ip(ip)
                 .loginScene(LoginScene.NON_DEVICE_FIRST_LOGIN).uid(loginReq.getUid()).build();
 

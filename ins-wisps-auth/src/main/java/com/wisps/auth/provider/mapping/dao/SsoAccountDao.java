@@ -10,4 +10,5 @@ public interface SsoAccountDao extends IService<SsoAccountEntity> {
 
     boolean insertAccount(String id, String dbIdentity, CredentialType credentialType);
 
+    boolean mfaEnable(String accountId);
 }

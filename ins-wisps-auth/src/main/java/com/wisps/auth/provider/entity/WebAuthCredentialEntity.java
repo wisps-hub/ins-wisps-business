@@ -1,5 +1,8 @@
 package com.wisps.auth.provider.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,10 +14,12 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@TableName("sso_webauth_credential")
 public class WebAuthCredentialEntity {
     /**
      * 主键
      */
+    @TableId(value = "id",type = IdType.AUTO)
     private Long id;
     /**
      * 账号id

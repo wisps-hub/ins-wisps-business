@@ -1,6 +1,8 @@
 package com.wisps.auth.provider.utils;
 
+import com.wisps.auth.provider.consts.SsoUserStatus;
 import com.wisps.auth.provider.exception.AuthErrorCode;
+import com.wisps.auth.provider.vo.dto.SsoUserInfo;
 import com.wisps.exception.BizException;
 import lombok.extern.slf4j.Slf4j;
 
@@ -47,5 +49,13 @@ public class CommonUtil {
             sb.append(delimiter).append(k);
         }
         return sb.toString();
+    }
+
+    public static boolean isEnableUser(SsoUserInfo ssoUserInfo){
+        if (ssoUserInfo == null) {
+            return false;
+        }
+        SsoUserStatus enumUserStatus = SsoUserStatus.getEnum(ssoUserInfo.getStatus());
+        return enumUserStatus != null && enumUserStatus.getCode() <= SsoUserStatus.ENABLE.getCode();
     }
 }
