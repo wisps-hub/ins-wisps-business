@@ -25,7 +25,7 @@ public enum SsoUserStatus {
     }
 
     public static SsoUserStatus getEnum(int code) {
-        for(SsoUserStatus value : EnumUserStatus.values()) {
+        for(SsoUserStatus value : SsoUserStatus.values()) {
             if(value.getCode() == code)
                 return value;
         }
